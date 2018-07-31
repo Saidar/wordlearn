@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="150.0" maxWidth="246.0" minHeight="150.0" minWidth="246.0" prefHeight="150.0" prefWidth="246.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.word.view.DBConnectionController">
+   <children>
+      <Button layoutX="181.0" layoutY="104.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Button>
+      <Button layoutX="101.0" layoutY="104.0" mnemonicParsing="false" onAction="#reconnect" text="Reconnect" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="14.0" layoutY="14.0" text="DBName:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="42.0" text="User:" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="40.0">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="16.0" layoutY="67.0" text="Password:" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="67.0">
+         <font>
+            <Font name="Times New Roman" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dbName" layoutX="84.0" layoutY="11.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="10.0" />
+      <TextField fx:id="dbLogin" layoutX="84.0" layoutY="36.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="35.0" />
+      <PasswordField fx:id="dbPass" layoutX="84.0" layoutY="63.0" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="60.0" />
+   </children>
+</AnchorPane>

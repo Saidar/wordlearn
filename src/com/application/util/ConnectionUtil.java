@@ -4,7 +4,8 @@ public class ConnectionUtil {
 
 	private static String username = "root";
 	private static String password = "rootroot";
-	private static String dbName = "jdbc:mysql://localhost/learn_app?useSSL=false&useTimezone=true&serverTimezone=UTC";
+	private static String dbString = "jdbc:mysql://localhost/learn_app?useSSL=false&useTimezone=true&serverTimezone=UTC";
+	private static String dbName = "learn_app";
 
 	public static String getUsername() {
 		return username;
@@ -27,7 +28,16 @@ public class ConnectionUtil {
 	}
 
 	public static void setDbName(String dbName) {
-		ConnectionUtil.dbName = "jdbc:mysql://localhost/" + dbName + "?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC";
+		ConnectionUtil.dbName = dbName;
+		ConnectionUtil.dbString = "jdbc:mysql://localhost/" + dbName + "?useSSL=false&useTimezone=true&serverTimezone=UTC";
+	}
+
+	public static String getDbString() {
+		return dbString;
+	}
+
+	public static void setDbString(String dbName) {
+		ConnectionUtil.dbString = "jdbc:mysql://localhost/" + dbName + "?useSSL=false&useTimezone=true&serverTimezone=UTC";
 	}
 
 }

@@ -26,7 +26,7 @@ public class ConnectionDB {
 		this.cfg = null;
 		try {
 			cfg = new Configuration()
-					.setProperty("hibernate.connection.url", ConnectionUtil.getDbName())
+					.setProperty("hibernate.connection.url", ConnectionUtil.getDbString())
 					.setProperty("hibernate.connection.password", ConnectionUtil.getPassword())
 					.setProperty("hibernate.connection.username", ConnectionUtil.getUsername())
 					.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")

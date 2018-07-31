@@ -141,7 +141,7 @@ public class WordLearnApp extends Application {
 
 	@Override
 	public void stop(){
-	    this.connection.closeTansaction();
+	    //this.connection.closeTansaction();
 	    Platform.exit();
 	    System.exit(0);
 	}
@@ -160,6 +160,32 @@ public class WordLearnApp extends Application {
             dialogStage.setScene(scene);
 
             NewUserController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            //controller.setWordLernApp(this);
+
+            dialogStage.showAndWait();
+
+            //return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //return false;
+        }
+    }
+
+    public void showDBConnection() {
+    	try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(WordLearnApp.class.getResource("view/DBConnectionLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("DB Connection");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            DBConnectionController controller = loader.getController();
             controller.setDialogStage(dialogStage);
             //controller.setWordLernApp(this);
 
