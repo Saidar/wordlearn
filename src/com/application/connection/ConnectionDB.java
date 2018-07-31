@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.application.util.ConnectionUtil;
 import com.application.word.WordLearnApp;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
@@ -24,17 +25,28 @@ public class ConnectionDB {
 	public ConnectionDB(String hibConfig){
 		this.cfg = null;
 		try {
-			cfg = new Configuration().configure(hibConfig);
+			cfg = new Configuration()
+					.setProperty("hibernate.connection.url", ConnectionUtil.getDbName())
+					.setProperty("hibernate.connection.password", ConnectionUtil.getPassword())
+					.setProperty("hibernate.connection.username", ConnectionUtil.getUsername())
+					.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
+					.setProperty("connection.driver_class", "com.mysql.jdbc.Driver")
+					.setProperty("hibernate.connection.pool_size", "1000")
+					.addAnnotatedClass(User_word.class)
+					.addAnnotatedClass(Word.class)
+					.addAnnotatedClass(WordToUser.class);
+
+					//.configure(hibConfig);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} //hibernate.cfg.xml
 		this.sf = cfg.buildSessionFactory();
-		this.session = sf.openSession();
+		//this.session = sf.openSession();
 
 	}
-	
-	
+
+
 
 	public Configuration getConfiguration() {
 		return this.cfg;
