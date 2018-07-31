@@ -3,6 +3,8 @@ package com.application.word;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+import org.hibernate.HibernateException;
+
 import com.application.connection.ConnectionDB;
 import com.application.util.PassEncrypt;
 import com.application.word.model.User_word;
@@ -40,13 +42,16 @@ public class WordLearnApp extends Application {
 		connectDB("hibernate.cfg.xml");
 
 		try {
-			connection.saveUser(new User_word("admin", PassEncrypt.getStringFromSHA256("admin")));
+		/*	connection.saveUser(new User_word("admin", PassEncrypt.getStringFromSHA256("admin")));
 			connection.saveWord(new Word("hello", "привет"));
 			connection.saveWord(new Word("mama", "мама"));
 			connection.saveWord(new Word("dad", "папа"));
 			connection.saveWord(new Word("sunny", "солнце"));
-		} catch (NoSuchAlgorithmException e) {
+*/
+		} catch (HibernateException e) {
 			e.printStackTrace();
+		} catch(Exception t) {
+			t.printStackTrace();
 		}
 
 		initRootLayout();
@@ -98,7 +103,7 @@ public class WordLearnApp extends Application {
 
 		try {
 
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/WordLernLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/WordLearnLayout.fxml"));
 			//loader.setLocation(WordLernApp.class.getResource("view/WordLernLayout.fxml"));
 
 			//loader.setController(this);
