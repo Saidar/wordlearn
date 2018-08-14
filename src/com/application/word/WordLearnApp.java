@@ -42,12 +42,12 @@ public class WordLearnApp extends Application {
 		connectDB("hibernate.cfg.xml");
 
 		try {
-		/*	connection.saveUser(new User_word("admin", PassEncrypt.getStringFromSHA256("admin")));
+			connection.saveUser(new User_word("admin", PassEncrypt.getStringFromSHA256("admin")));
 			connection.saveWord(new Word("hello", "привет"));
 			connection.saveWord(new Word("mama", "мама"));
 			connection.saveWord(new Word("dad", "папа"));
 			connection.saveWord(new Word("sunny", "солнце"));
-*/
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} catch(Exception t) {
@@ -166,6 +166,29 @@ public class WordLearnApp extends Application {
             dialogStage.showAndWait();
 
             //return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            //return false;
+        }
+    }
+
+    public void showAddSingleWord() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(WordLearnApp.class.getResource("view/AddSingleWordLayout.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("New Single Word");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            AddSingleWordController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+
         } catch (IOException e) {
             e.printStackTrace();
             //return false;

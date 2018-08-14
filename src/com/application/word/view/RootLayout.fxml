@@ -13,6 +13,8 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#newUser" text="New User" />
                   <MenuItem mnemonicParsing="false" onAction="#changeDB" text="Data Base" />
+                  <MenuItem mnemonicParsing="false" onAction="#addSingleWord" text="Add Single Word" />
+                  <MenuItem mnemonicParsing="false" onAction="#addWords" text="Add words" />
               <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Close" />
             </items>
           </Menu>
