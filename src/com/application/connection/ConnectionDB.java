@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 
 import com.application.util.ConnectionUtil;
 import com.application.word.WordLearnApp;
+import com.application.word.model.Sentence;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
 import com.application.word.model.WordToUser;
@@ -26,7 +28,7 @@ public class ConnectionDB {
 		this.cfg = null;
 		try {
 			cfg = new Configuration()
-					.setProperty("hibernate.connection.url", ConnectionUtil.getDbString())
+					/*.setProperty("hibernate.connection.url", ConnectionUtil.getDbString())
 					.setProperty("hibernate.connection.password", ConnectionUtil.getPassword())
 					.setProperty("hibernate.connection.username", ConnectionUtil.getUsername())
 					.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
@@ -34,10 +36,11 @@ public class ConnectionDB {
 					.setProperty("hibernate.connection.pool_size", "1000")
 					.addAnnotatedClass(User_word.class)
 					.addAnnotatedClass(Word.class)
-					.addAnnotatedClass(WordToUser.class);
-
-					//.configure(hibConfig);
-		} catch (Exception e) {
+					.addAnnotatedClass(WordToUser.class)
+					.addAnnotatedClass(Sentence.class);
+*/
+					.configure(hibConfig);
+		} catch (HibernateException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} //hibernate.cfg.xml
@@ -151,6 +154,16 @@ public class ConnectionDB {
 			return true;
 		}
 		return false;
+	}
+
+	public List selectWords() {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+
+		Query query = this.session.createQuery("from Word");
+		List<Word> listWords = (List<Word>) query.getResultList();
+
+		return listWords;
 	}
 
 	public List selectQuestionWord() {

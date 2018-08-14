@@ -2,6 +2,7 @@ package com.application.word.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import javafx.beans.property.IntegerProperty;
@@ -37,6 +39,9 @@ public class Word implements Serializable {
 
 	@OneToMany(mappedBy="word")
 	private Set<WordToUser> wordToUsers = new HashSet<WordToUser>();
+
+	@OneToOne(mappedBy="word")
+	private Sentence sentence;
 
 	public Word() {
 		this(null, null);
@@ -83,5 +88,25 @@ public class Word implements Serializable {
 
 	public void setWordToUsers(Set<WordToUser> wordToUsers) {
 		this.wordToUsers = wordToUsers;
+	}
+
+	public Sentence getSentence() {
+		return sentence;
+	}
+
+	public void setSentence(Sentence sentence) {
+		this.sentence = sentence;
+	}
+
+	public boolean containsInWords(List<Word> list){
+		boolean isExist = false;
+		int count = 0;
+		while(count < list.size()) {
+			if(list.get(count).getWord().equals(this.getWord())) {
+				isExist = true;
+			}
+			count++;
+		}
+	    return isExist;
 	}
 }
