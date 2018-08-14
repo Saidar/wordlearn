@@ -2,6 +2,7 @@ package com.application.word.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -83,5 +84,17 @@ public class Word implements Serializable {
 
 	public void setWordToUsers(Set<WordToUser> wordToUsers) {
 		this.wordToUsers = wordToUsers;
+	}
+
+	public boolean containsInWords(List<Word> list){
+		boolean isExist = false;
+		int count = 0;
+		while(count < list.size()) {
+			if(list.get(count).getWord().equals(this.getWord())) {
+				isExist = true;
+			}
+			count++;
+		}
+	    return isExist;
 	}
 }

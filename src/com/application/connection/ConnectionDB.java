@@ -153,6 +153,16 @@ public class ConnectionDB {
 		return false;
 	}
 
+	public List selectWords() {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+
+		Query query = this.session.createQuery("from Word");
+		List<Word> listWords = (List<Word>) query.getResultList();
+
+		return listWords;
+	}
+
 	public List selectQuestionWord() {
 
 		this.session = sf.openSession();
