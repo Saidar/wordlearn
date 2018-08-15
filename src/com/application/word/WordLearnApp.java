@@ -33,6 +33,7 @@ public class WordLearnApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Word Lern App");
+		this.primaryStage.setResizable(false);
 		this.primaryStage.getIcons().add(new Image("file:resources/images/login_guest.png"));
 
 		WordLearnApp.wordLernApp = this;
@@ -156,6 +157,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("New User");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -182,6 +184,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("New Single Word");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -205,6 +208,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("DB Connection");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 

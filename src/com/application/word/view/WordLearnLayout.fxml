@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.word.view.WordController">
+<AnchorPane prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.word.view.WordController">
    <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -33,22 +32,6 @@
                         <Font name="Times New Roman" size="12.0" />
                      </font>
                   </Label>
-                  <ButtonBar layoutX="75.0" layoutY="189.0" prefHeight="40.0" prefWidth="222.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
-                    <buttons>
-                      <Button mnemonicParsing="false" onAction="#onFirstButton" text="1">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onSecondtButton" text="2">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font></Button>
-                        <Button mnemonicParsing="false" onAction="#onThirdButton" text="3">
-                           <font>
-                              <Font name="Times New Roman" size="12.0" />
-                           </font></Button>
-                    </buttons>
-                  </ButtonBar>
                   <Label layoutX="13.0" layoutY="236.0" prefHeight="25.0" prefWidth="47.0" text="Answer:" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
@@ -65,19 +48,30 @@
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font></Label>
-                  <Label fx:id="answerLabel_1" layoutX="68.0" layoutY="100.0" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="100.0">
+                  <Label fx:id="answerLabel_1" layoutX="68.0" layoutY="100.0" onMouseClicked="#onFirstButton" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="100.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font></Label>
-                  <Label fx:id="answerLabel_2" layoutX="65.0" layoutY="120.0" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="120.0">
+                  <Label fx:id="answerLabel_2" layoutX="65.0" layoutY="120.0" onMouseClicked="#onSecondtButton" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="120.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font></Label>
-                  <Label fx:id="answerLabel_3" layoutX="65.0" layoutY="141.0" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="140.0">
+                  <Label fx:id="answerLabel_3" layoutX="65.0" layoutY="141.0" onMouseClicked="#onThirdButton" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="140.0">
                      <font>
                         <Font name="Times New Roman" size="12.0" />
                      </font></Label>
                   <Label fx:id="corAnswer" layoutX="65.0" layoutY="239.0" text="Label" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="65.0" />
+                  <Label layoutX="41.0" layoutY="154.0" text="4)" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="160.0">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="answerLabel_4" layoutX="65.0" layoutY="160.0" onMouseClicked="#onQuardButton" text="Label" AnchorPane.leftAnchor="65.0" AnchorPane.topAnchor="160.0">
+                     <font>
+                        <Font name="Times New Roman" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="348.0" layoutY="18.0" mnemonicParsing="false" onAction="#onHandleBackButton" prefHeight="25.0" prefWidth="55.0" text="&lt; Back" />
                </children>
             </AnchorPane>
         </items>
