@@ -13,5 +13,6 @@
         <mapping class="com.application.word.model.User_word"/>
         <mapping class="com.application.word.model.Word"/>
         <mapping class="com.application.word.model.WordToUser"/>
+        <mapping class="com.application.word.model.Sentence"/>
     </session-factory>
 </hibernate-configuration>
