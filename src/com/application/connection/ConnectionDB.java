@@ -26,7 +26,7 @@ public class ConnectionDB {
 		this.cfg = null;
 		try {
 			cfg = new Configuration()
-					.setProperty("hibernate.connection.url", ConnectionUtil.getDbString())
+					/*.setProperty("hibernate.connection.url", ConnectionUtil.getDbString())
 					.setProperty("hibernate.connection.password", ConnectionUtil.getPassword())
 					.setProperty("hibernate.connection.username", ConnectionUtil.getUsername())
 					.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect")
@@ -35,8 +35,8 @@ public class ConnectionDB {
 					.addAnnotatedClass(User_word.class)
 					.addAnnotatedClass(Word.class)
 					.addAnnotatedClass(WordToUser.class);
-
-					//.configure(hibConfig);
+*/
+					.configure(hibConfig);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -119,6 +119,26 @@ public class WordLearnApp extends Application {
 
 	}
 
+	public void showSentenceLauout() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/SentenceLayout.fxml"));
+			//loader.setLocation(WordLernApp.class.getResource("view/WordLernLayout.fxml"));
+
+			//loader.setController(this);
+
+			AnchorPane sentenceLayout = (AnchorPane) loader.load();
+
+			rootLayout.setCenter(sentenceLayout);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void showWelcomeLayout() {
 
 		try {
