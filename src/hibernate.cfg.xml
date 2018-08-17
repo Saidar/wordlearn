@@ -10,9 +10,11 @@
         <property name="connection.password">rootroot</property>
         <property name="connection.pool_size">1000</property>
         <property name="hbm2ddl.auto">create</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property>
         <mapping class="com.application.word.model.User_word"/>
         <mapping class="com.application.word.model.Word"/>
         <mapping class="com.application.word.model.WordToUser"/>
         <mapping class="com.application.word.model.Sentence"/>
+        <mapping class="com.application.word.model.SentenceToUser"/>
     </session-factory>
 </hibernate-configuration>
