@@ -191,7 +191,7 @@ public class ConnectionDB {
 
 		query = this.session.createQuery("Select a From Word as a INNER JOIN WordToUser as b "
 													+ "on a.id = b.word "
-													+ "where b.countRepeat > 3 "
+													+ "where b.countRepeat > 2 "
 													+ "and b.user = :paramUserId");
 		User_word user = WordLearnApp.wordLernApp.getUser_word();
 		query.setParameter("paramUserId", user);

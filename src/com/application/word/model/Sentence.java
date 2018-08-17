@@ -6,9 +6,11 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,7 +26,8 @@ public class Sentence implements Serializable {
 	@Column(name = "sentence", length = 200)
 	private String sentence;
 
-	@OneToOne(mappedBy="sentence")
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name= "word_id")
 	private Word word;
 
 	@OneToMany(mappedBy = "sentence")

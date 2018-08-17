@@ -41,7 +41,12 @@ public class WordLearnApp extends Application {
 
 		//connection to DB
 
+		try {
+
 		connectDB("hibernate.cfg.xml");
+		}catch (HibernateException e) {
+			e.printStackTrace();
+		}
 
 		try {
 			Word checkWord_1 = new Word("hello", "привет");

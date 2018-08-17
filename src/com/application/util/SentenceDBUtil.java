@@ -68,7 +68,7 @@ public class SentenceDBUtil {
 
 		@SuppressWarnings("deprecation")
 		List<Sentence> listFromSentenceUser = (List<Sentence>) session.createCriteria(Sentence.class, "sen")
-				.createAlias("sen.sentenceToUser", "sentenceToUser", Criteria.INNER_JOIN, Restrictions.gt("countRepeat", 1))
+				.createAlias("sen.sentenceToUser", "sentenceToUser", Criteria.INNER_JOIN, Restrictions.gt("countRepeat", 3))
 				.list();
 
 		session.close();
