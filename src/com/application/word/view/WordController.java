@@ -41,7 +41,7 @@ public class WordController {
 	}
 
 	private void getNewWords() {
-		List<Word> showWord = new ArrayList();
+		List<Word> showWord = new ArrayList(); //words which are going to show on Scene
 		randomWord = getRandomWord();
 
 		showWord = getAnswersWord(randomWord.getId());

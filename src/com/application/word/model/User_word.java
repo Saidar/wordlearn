@@ -33,6 +33,9 @@ public class User_word implements Serializable{
 	@OneToMany(mappedBy="user")
 	private Set<WordToUser> wordToUsers = new HashSet<WordToUser>();
 
+	@OneToMany(mappedBy="user")
+	private Set<SentenceToUser> sentenceToUsers = new HashSet<SentenceToUser>();
+
 
 	public User_word() {
 		this(null, null);

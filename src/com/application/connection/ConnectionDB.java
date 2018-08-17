@@ -12,6 +12,8 @@ import org.hibernate.cfg.Configuration;
 
 import com.application.util.ConnectionUtil;
 import com.application.word.WordLearnApp;
+import com.application.word.model.Sentence;
+import com.application.word.model.SentenceToUser;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
 import com.application.word.model.WordToUser;
@@ -122,6 +124,22 @@ public class ConnectionDB {
 		this.session.close();
 	}
 
+	public void saveSentence(Sentence sentence) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(sentence);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
+
+
+	public void saveSentenceToUser(SentenceToUser sentenceToUser) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(sentenceToUser);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
 	public void saveWord(Word word) {
 		this.session = sf.openSession();
 		this.session.beginTransaction();
