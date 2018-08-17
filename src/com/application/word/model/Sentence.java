@@ -24,6 +24,19 @@ public class Sentence implements Serializable {
 	@OneToOne(mappedBy="sentence")
 	private Word word;
 
+	@OneToMany(mappedBy = "sentence")
+	private List<SentenceToUser> sentenceToUser = new ArrayList<SentenceToUser>();
+
+	public Sentence() {
+		this(null, null);
+	}
+
+	public Sentence(String sentence, Word word) {
+		this.sentence = sentence;
+		this.word = word;
+	}
+
+
 	public long getId() {
 		return id;
 	}

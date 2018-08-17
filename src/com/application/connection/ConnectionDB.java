@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -14,6 +13,7 @@ import org.hibernate.cfg.Configuration;
 import com.application.util.ConnectionUtil;
 import com.application.word.WordLearnApp;
 import com.application.word.model.Sentence;
+import com.application.word.model.SentenceToUser;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
 import com.application.word.model.WordToUser;
@@ -36,11 +36,10 @@ public class ConnectionDB {
 					.setProperty("hibernate.connection.pool_size", "1000")
 					.addAnnotatedClass(User_word.class)
 					.addAnnotatedClass(Word.class)
-					.addAnnotatedClass(WordToUser.class)
-					.addAnnotatedClass(Sentence.class);
+					.addAnnotatedClass(WordToUser.class);
 */
 					.configure(hibConfig);
-		} catch (HibernateException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} //hibernate.cfg.xml
@@ -125,6 +124,22 @@ public class ConnectionDB {
 		this.session.close();
 	}
 
+	public void saveSentence(Sentence sentence) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(sentence);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
+
+
+	public void saveSentenceToUser(SentenceToUser sentenceToUser) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(sentenceToUser);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
 	public void saveWord(Word word) {
 		this.session = sf.openSession();
 		this.session.beginTransaction();

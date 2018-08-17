@@ -28,6 +28,9 @@ public class WordController {
 	private Label answerLabel_3;
 
 	@FXML
+	private Label answerLabel_4;
+
+	@FXML
 	private Label corAnswer;
 
 	//private List<Word> showWord;
@@ -41,7 +44,7 @@ public class WordController {
 	}
 
 	private void getNewWords() {
-		List<Word> showWord = new ArrayList();
+		List<Word> showWord = new ArrayList(); //words which are going to show on Scene
 		randomWord = getRandomWord();
 
 		showWord = getAnswersWord(randomWord.getId());
@@ -53,6 +56,7 @@ public class WordController {
 		answerLabel_1.setText(showWord.get(0).getTranslate());
 		answerLabel_2.setText(showWord.get(1).getTranslate());
 		answerLabel_3.setText(showWord.get(2).getTranslate());
+		answerLabel_4.setText(showWord.get(3).getTranslate());
 
 	}
 
@@ -76,6 +80,7 @@ public class WordController {
 		try {
 			returnList.add(answerList.get(0));
 			returnList.add(answerList.get(1));
+			returnList.add(answerList.get(2));
 			return returnList;
 		}catch (IndexOutOfBoundsException e) {
 			System.out.println("There is no any words in DB!");
@@ -84,6 +89,11 @@ public class WordController {
 			return returnList;
 		}
 
+	}
+
+	@FXML
+	public void onHandleBackButton() {
+		WordLearnApp.wordLernApp.showWelcomeLayout();
 	}
 
 	@FXML
@@ -101,6 +111,12 @@ public class WordController {
 	@FXML
 	private void onThirdButton() {
 		String potAnswer = answerLabel_3.getText();
+		checkAnswer(potAnswer);
+	}
+
+	@FXML
+	private void onQuardButton() {
+		String potAnswer = answerLabel_4.getText();
 		checkAnswer(potAnswer);
 	}
 

@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 
 import com.application.connection.ConnectionDB;
 import com.application.util.PassEncrypt;
+import com.application.word.model.Sentence;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
 import com.application.word.view.*;
@@ -33,6 +34,7 @@ public class WordLearnApp extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Word Lern App");
+		this.primaryStage.setResizable(false);
 		this.primaryStage.getIcons().add(new Image("file:resources/images/login_guest.png"));
 
 		WordLearnApp.wordLernApp = this;
@@ -42,11 +44,22 @@ public class WordLearnApp extends Application {
 		connectDB("hibernate.cfg.xml");
 
 		try {
+			Word checkWord_1 = new Word("hello", "привет");
+			Word checkWord_2 = new Word("mama", "мама");
+			Word checkWord_3 = new Word("dad", "папа");
+			Word checkWord_4 = new Word("sun", "солнце");
+
 			connection.saveUser(new User_word("admin", PassEncrypt.getStringFromSHA256("admin")));
-			connection.saveWord(new Word("hello", "привет"));
-			connection.saveWord(new Word("mama", "мама"));
-			connection.saveWord(new Word("dad", "папа"));
-			connection.saveWord(new Word("sunny", "солнце"));
+
+			connection.saveWord(checkWord_1);
+			connection.saveWord(checkWord_2);
+			connection.saveWord(checkWord_3);
+			connection.saveWord(checkWord_4);
+
+			connection.saveSentence(new Sentence("I say hello!", checkWord_1));
+			connection.saveSentence(new Sentence("My mama is so beautiful!", checkWord_2));
+			connection.saveSentence(new Sentence("My dad is very tall!", checkWord_3));
+			connection.saveSentence(new Sentence("It is very warm when the sun is out!", checkWord_4));
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -119,6 +132,26 @@ public class WordLearnApp extends Application {
 
 	}
 
+	public void showSentenceLauout() {
+
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/SentenceLayout.fxml"));
+			//loader.setLocation(WordLernApp.class.getResource("view/WordLernLayout.fxml"));
+
+			//loader.setController(this);
+
+			AnchorPane sentenceLayout = (AnchorPane) loader.load();
+
+			rootLayout.setCenter(sentenceLayout);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 	public void showWelcomeLayout() {
 
 		try {
@@ -156,6 +189,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("New User");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -182,6 +216,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("New Single Word");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
@@ -205,6 +240,7 @@ public class WordLearnApp extends Application {
             dialogStage.setTitle("DB Connection");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
+            dialogStage.setResizable(false);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 

@@ -16,7 +16,7 @@ public class WelcomeController {
 
 	@FXML
 	public void onHandleSentenceButton() {
-
+		WordLearnApp.wordLernApp.showSentenceLauout();
 	}
 
 	@FXML
