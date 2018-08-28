@@ -68,10 +68,10 @@ public class WordLearnApp extends Application {
 			connection.saveSentence(new Sentence("My dad is very tall!", checkWord_3));
 			connection.saveSentence(new Sentence("It is very warm when the sun is out!", checkWord_4));
 
-			tempSaveFileAndPivcture(checkWord_1);
-			tempSaveFileAndPivcture(checkWord_2);
-			tempSaveFileAndPivcture(checkWord_3);
-			tempSaveFileAndPivcture(checkWord_4);
+			tempSaveFileAndPicture(checkWord_1, "resources/learn/hi.jpg");
+			tempSaveFileAndPicture(checkWord_2, "resources/learn/mom.jpg");
+			tempSaveFileAndPicture(checkWord_3, "resources/learn/dad.jpg");
+			tempSaveFileAndPicture(checkWord_4, "resources/learn/sun.jpg");
 
 
 
@@ -91,11 +91,11 @@ public class WordLearnApp extends Application {
 		//showWordLearnLauout();
 	}
 
-	private void tempSaveFileAndPivcture(Word word) {
+	private void tempSaveFileAndPicture(Word word, String location) {
 		Picture picture = new Picture();
 		BlobFile file = new BlobFile();
 
-		file.setContent(file.writeImage("resources/images/login_guest.png"));
+		file.setContent(file.writeImage(location));
 		file.setPicture(picture);
 
 		picture.setFile(file);

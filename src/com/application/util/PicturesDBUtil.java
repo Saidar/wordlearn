@@ -38,11 +38,14 @@ public class PicturesDBUtil {
 
 		Session session = beginTransactionLocal();
 
+		User_word user = WordLearnApp.wordLernApp.getUser_word();
+
 		List<Picture> listFromPictures = getAllPictires();
 
 		@SuppressWarnings("deprecation")
 		List<Picture> listFromPictureUser = (List<Picture>) session.createCriteria(Picture.class, "pic")
 				.createAlias("pic.pictureToUser", "pictureToUser", Criteria.INNER_JOIN, Restrictions.gt("countRepeat", 3))
+				.add(Restrictions.eq("pictureToUser.user", user))
 				.list();
 
 		session.close();
