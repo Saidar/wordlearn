@@ -12,6 +12,9 @@ import org.hibernate.cfg.Configuration;
 
 import com.application.util.ConnectionUtil;
 import com.application.word.WordLearnApp;
+import com.application.word.model.BlobFile;
+import com.application.word.model.Picture;
+import com.application.word.model.PictureToUser;
 import com.application.word.model.Sentence;
 import com.application.word.model.SentenceToUser;
 import com.application.word.model.User_word;
@@ -155,6 +158,31 @@ public class ConnectionDB {
 			this.session.getTransaction().commit();
 		this.session.close();
 
+	}
+
+
+	public void savePicture(Picture picture) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(picture);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
+
+	public void savePictureToUser(PictureToUser pictureToUser) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(pictureToUser);
+			this.session.getTransaction().commit();
+		this.session.close();
+	}
+
+	public void saveFile(BlobFile file) {
+		this.session = sf.openSession();
+		this.session.beginTransaction();
+			this.session.save(file);
+			this.session.getTransaction().commit();
+		this.session.close();
 	}
 
 	public boolean isPassEqualsToUser(String login, String pass) {

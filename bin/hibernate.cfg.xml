@@ -16,5 +16,8 @@
         <mapping class="com.application.word.model.WordToUser"/>
         <mapping class="com.application.word.model.Sentence"/>
         <mapping class="com.application.word.model.SentenceToUser"/>
+        <mapping class="com.application.word.model.Picture"/>
+        <mapping class="com.application.word.model.PictureToUser"/>
+        <mapping class="com.application.word.model.BlobFile"/>
     </session-factory>
 </hibernate-configuration>

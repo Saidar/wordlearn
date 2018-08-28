@@ -36,6 +36,9 @@ public class User_word implements Serializable{
 	@OneToMany(mappedBy="user")
 	private Set<SentenceToUser> sentenceToUsers = new HashSet<SentenceToUser>();
 
+	@OneToMany(mappedBy="user")
+	private Set<PictureToUser> pictureToUsers = new HashSet<PictureToUser>();
+
 
 	public User_word() {
 		this(null, null);
@@ -84,5 +87,21 @@ public class User_word implements Serializable{
 
 	public void setWordToUsers(Set<WordToUser> wordToUsers) {
 		this.wordToUsers = wordToUsers;
+	}
+
+	public Set<SentenceToUser> getSentenceToUsers() {
+		return sentenceToUsers;
+	}
+
+	public void setSentenceToUsers(Set<SentenceToUser> sentenceToUsers) {
+		this.sentenceToUsers = sentenceToUsers;
+	}
+
+	public Set<PictureToUser> getPictureToUsers() {
+		return pictureToUsers;
+	}
+
+	public void setPictureToUsers(Set<PictureToUser> pictureToUsers) {
+		this.pictureToUsers = pictureToUsers;
 	}
 }

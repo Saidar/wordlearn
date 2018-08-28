@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 
 import com.application.connection.ConnectionDB;
 import com.application.util.PassEncrypt;
+import com.application.word.model.BlobFile;
+import com.application.word.model.Picture;
 import com.application.word.model.Sentence;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
@@ -66,6 +68,14 @@ public class WordLearnApp extends Application {
 			connection.saveSentence(new Sentence("My dad is very tall!", checkWord_3));
 			connection.saveSentence(new Sentence("It is very warm when the sun is out!", checkWord_4));
 
+			tempSaveFileAndPivcture(checkWord_1);
+			tempSaveFileAndPivcture(checkWord_2);
+			tempSaveFileAndPivcture(checkWord_3);
+			tempSaveFileAndPivcture(checkWord_4);
+
+
+
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} catch(Exception t) {
@@ -79,6 +89,20 @@ public class WordLearnApp extends Application {
 		LoginController loginController = new LoginController();
 
 		//showWordLearnLauout();
+	}
+
+	private void tempSaveFileAndPivcture(Word word) {
+		Picture picture = new Picture();
+		BlobFile file = new BlobFile();
+
+		file.setContent(file.writeImage("resources/images/login_guest.png"));
+		file.setPicture(picture);
+
+		picture.setFile(file);
+		picture.setWord(word);
+
+		connection.saveFile(file);
+		connection.savePicture(picture);
 	}
 
 	public void initRootLayout() {
@@ -293,5 +317,24 @@ public class WordLearnApp extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public void showPictureLauout() {
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("view/PictureLayout.fxml"));
+			//loader.setLocation(WordLernApp.class.getResource("view/WordLernLayout.fxml"));
+
+			//loader.setController(this);
+
+			AnchorPane sentenceLayout = (AnchorPane) loader.load();
+
+			rootLayout.setCenter(sentenceLayout);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }

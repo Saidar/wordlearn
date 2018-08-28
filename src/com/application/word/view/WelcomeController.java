@@ -21,7 +21,7 @@ public class WelcomeController {
 
 	@FXML
 	public void onHandlePicturesButton() {
-
+		WordLearnApp.wordLernApp.showPictureLauout();
 	}
 
 	@FXML

@@ -43,6 +43,9 @@ public class Word implements Serializable {
 	@OneToOne(mappedBy="word")
 	private Sentence sentence;
 
+	@OneToOne(mappedBy="word")
+	private Picture picture;
+
 	public Word() {
 		this(null, null);
 	}
@@ -108,5 +111,13 @@ public class Word implements Serializable {
 			count++;
 		}
 	    return isExist;
+	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
 	}
 }
