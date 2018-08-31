@@ -66,6 +66,8 @@ public class PicturesDBUtil {
         	questionPicture = new Picture(null, new Word("No sentences in DB.", "No sentences in DB."));
         }
 
+        session.close();
+
 		return questionPicture;
 	}
 
@@ -101,11 +103,12 @@ public class PicturesDBUtil {
 
 		if(session != null) {
 			criteria = session.createCriteria(Picture.class);
-			List list =  criteria.list();
+			List list = criteria.list();
 			session.close();
 			return list;
 		}else {
 			System.out.println("Problem with connection Picture.getAllSentence");
+			session.close();
 			return null;
 		}
 	}
@@ -141,9 +144,12 @@ public class PicturesDBUtil {
 			criteria.where(builder.equal(root.get("user"), user));
 			criteria.where(builder.equal(root.get("picture"), randomPicture));
 			session.createQuery(criteria).executeUpdate();
+
 		}catch(Exception e){
 			WordLearnApp.wordLernApp.getConnection().savePictureToUser(new PictureToUser(user, randomPicture));
 		}
+
+		session.close();
 
 	}
 

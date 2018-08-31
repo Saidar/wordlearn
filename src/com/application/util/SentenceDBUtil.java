@@ -28,7 +28,7 @@ public class SentenceDBUtil {
 	@SuppressWarnings({ "deprecation", "rawtypes" })
 	public static List getAllSentence() {
 
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 		Criteria criteria = null;
 
 		if(session != null) {
@@ -42,27 +42,11 @@ public class SentenceDBUtil {
 		}
 	}
 
-	public static Session beginTransactionLocal() {
-		try {
-			SessionFactory sessionFactory = WordLearnApp.wordLernApp.getConnection().getSessionFactory();
-
-			Session session = sessionFactory.openSession();
-
-			session.beginTransaction();
-
-			return session;
-		}catch(HibernateException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
 	public static Sentence getQuestionSentenceString() {
 
 		Sentence questionSentence;
 
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		User_word user = WordLearnApp.wordLernApp.getUser_word();
 
@@ -71,7 +55,7 @@ public class SentenceDBUtil {
 		@SuppressWarnings("deprecation")
 		List<Sentence> listFromSentenceUser = (List<Sentence>) session.createCriteria(Sentence.class, "sen")
 				.createAlias("sen.sentenceToUser", "sentenceToUser", Criteria.INNER_JOIN, Restrictions.gt("countRepeat", 3))
-				.add(Restrictions.eq("pictureToUser.user", user))
+				.add(Restrictions.eq("sentenceToUser.user", user))
 				.list();
 
 		session.close();
@@ -102,7 +86,7 @@ public class SentenceDBUtil {
 
 	public static List<Sentence> getAnswers(Sentence randomSentence) {
 
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		List<Sentence> allPosAnswers = session.createCriteria(Sentence.class)
 				.add(Restrictions.ne("id", randomSentence.getId())).list();
@@ -126,7 +110,7 @@ public class SentenceDBUtil {
 	}
 
 	public static void incrementCountSentence(Sentence randomSentence) {
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		User_word user = WordLearnApp.wordLernApp.getUser_word();
 
@@ -143,9 +127,12 @@ public class SentenceDBUtil {
 			criteria.where(builder.equal(root.get("user"), user));
 			criteria.where(builder.equal(root.get("sentence"), randomSentence));
 			session.createQuery(criteria).executeUpdate();
+
 		}catch(Exception e){
 			WordLearnApp.wordLernApp.getConnection().saveSentenceToUser(new SentenceToUser(user, randomSentence));
 		}
+
+		session.close();
 	}
 
 
