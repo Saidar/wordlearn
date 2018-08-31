@@ -5,9 +5,9 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7254064?useSSL=true&amp;useTimezone=true&amp;serverTimezone=UTC</property>
-        <property name="connection.username">sql7254064</property>
-        <property name="connection.password">uWU4tnl1RR</property>
+        <property name="connection.url">jdbc:mysql://localhost/learn_app?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">rootroot</property>
         <property name="connection.pool_size">1000</property>
         <property name="hbm2ddl.auto">create</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
