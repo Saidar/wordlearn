@@ -33,7 +33,7 @@ public class WordLearnApp extends Application {
 	private static User_word user;
 
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws Exception {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Word Lern App");
 		this.primaryStage.setResizable(false);
@@ -45,7 +45,7 @@ public class WordLearnApp extends Application {
 
 		try {
 
-		connectDB("hibernate.cfg.xml");
+		connectDB("hibernate_local.cfg.xml");
 		}catch (HibernateException e) {
 			e.printStackTrace();
 		}

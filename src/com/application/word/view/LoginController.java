@@ -61,7 +61,7 @@ public class LoginController {
 	public void actionOnLogin() {
 		String login = loginTexF.getText();
 
-		if(WordLearnApp.wordLernApp.getConnection().isLoginExists( loginTexF.getText())) {
+		if(CommonDBUtil.isLoginExists(loginTexF.getText())) {
 			passwordLabl.setVisible(true);
 			passwordTexF.setVisible(true);
 		}else {
@@ -86,9 +86,9 @@ public class LoginController {
 			e.printStackTrace();
 		}
 
-		if(connection.isPassEqualsToUser(login, pass)) {
+		if(CommonDBUtil.isPassEqualsToUser(login, pass)) {
 			wordLernApp.setUser_word(new User_word(login, pass));
-			long id = connection.getUserId(login);
+			long id = CommonDBUtil.getUserId(login);
 			wordLernApp.getUser_word().setId(id);
 			wordLernApp.showWelcomeLayout();
 		}

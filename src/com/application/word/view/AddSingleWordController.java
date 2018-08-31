@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import com.application.util.WordDBUtil;
 import com.application.word.WordLearnApp;
 import com.application.word.model.Word;
 
@@ -41,10 +42,19 @@ public class AddSingleWordController {
 
 			Word newWord = new Word(inputWord, inputTranslation);
 
-			List<Word> words =  WordLearnApp.wordLernApp.getConnection().selectWords();
+			List<Word> words =  WordDBUtil.selectWords();
 
 			if(!newWord.containsInWords(words)) {
 	        	WordLearnApp.wordLernApp.getConnection().saveWord(newWord);
+	        	dialogStage.close();
+
+	        	Alert alert = new Alert(AlertType.INFORMATION);
+        		alert.initOwner(dialogStage);
+                alert.setTitle("New Single Word!");
+                alert.setHeaderText("New Single Word was added!");
+                alert.setContentText("Now this word exists in data base.");
+                alert.showAndWait();
+
         	}else {
         		Alert alert = new Alert(AlertType.CONFIRMATION);
         		alert.initOwner(dialogStage);

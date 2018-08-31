@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.application.util.WordDBUtil;
 import com.application.word.WordLearnApp;
 import com.application.word.model.Word;
 
@@ -93,7 +94,7 @@ public class RootLayoutController {
         List<String> exists = new ArrayList<>();
         //exists = null;
         int counter = 0;
-        List<Word> words = WordLearnApp.wordLernApp.getConnection().selectWords();
+        List<Word> words = WordDBUtil.selectWords();
 
         try {
 

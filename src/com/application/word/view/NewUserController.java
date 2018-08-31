@@ -3,6 +3,7 @@ package com.application.word.view;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import com.application.util.CommonDBUtil;
 import com.application.util.PassEncrypt;
 import com.application.util.UserUtil;
 import com.application.word.WordLearnApp;
@@ -60,7 +61,7 @@ public class NewUserController {
 		String login = "";
 		login = loginTF.getText();
 
-		if(WordLearnApp.wordLernApp.getConnection().isLoginExists(login)) {
+		if(CommonDBUtil.isLoginExists(login)) {
 			loginLabel.setText("exists");
 		}else {
 			loginLabel.setText("");
@@ -105,7 +106,7 @@ public class NewUserController {
 			//loginLabel2.setText("New User created!");
 			dialogStage.close();
 
-			Alert alert = new Alert(AlertType.CONFIRMATION);
+			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.initOwner(dialogStage);
             alert.setTitle("New User Created");
             alert.setHeaderText("New User Created! \nPlease Login!");
@@ -118,7 +119,7 @@ public class NewUserController {
 		String errorMessage = "";
 
 
-		if(WordLearnApp.wordLernApp.getConnection().isLoginExists( loginTF.getText())) {
+		if(CommonDBUtil.isLoginExists( loginTF.getText())) {
 			errorMessage += "This login is exists!\n";
 		}
 

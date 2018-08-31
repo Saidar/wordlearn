@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Random;
 
 import com.application.connection.ConnectionDB;
+import com.application.util.CommonDBUtil;
+import com.application.util.WordDBUtil;
 import com.application.word.WordLearnApp;
 import com.application.word.model.*;
 
@@ -61,8 +63,7 @@ public class WordController {
 	}
 
 	public Word getRandomWord() {
-		ConnectionDB connection = WordLearnApp.wordLernApp.getConnection();
-		List<Word> wordList = (List<Word>) connection.selectQuestionWord();
+		List<Word> wordList = (List<Word>) WordDBUtil.selectQuestionWord();
 		Collections.shuffle(wordList);
 		try {
 			return wordList.get(0);
@@ -74,7 +75,7 @@ public class WordController {
 	}
 
 	public List getAnswersWord(long id) {
-		List<Word> answerList = WordLearnApp.wordLernApp.getConnection().selectAnswerWord(id);
+		List<Word> answerList = WordDBUtil.selectAnswerWord(id);
 		Collections.shuffle(answerList);
 		List<Word> returnList = new ArrayList();
 		try {
@@ -124,7 +125,7 @@ public class WordController {
 		if(!potAnswer.equals("NoWords")){
 			if(potAnswer.equals(randomWord.getTranslate())) {
 				corAnswer.setText("Correct!");
-				WordLearnApp.wordLernApp.getConnection().incrementCountWord(randomWord);
+				WordDBUtil.incrementCountWord(randomWord);
 				getNewWords();
 			}else {
 				corAnswer.setText("Incorrect...");

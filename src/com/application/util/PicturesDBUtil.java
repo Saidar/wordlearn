@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,16 +13,12 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 
 import org.hibernate.Criteria;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.application.word.WordLearnApp;
 import com.application.word.model.Picture;
 import com.application.word.model.PictureToUser;
-import com.application.word.model.Sentence;
-import com.application.word.model.SentenceToUser;
 import com.application.word.model.User_word;
 import com.application.word.model.Word;
 
@@ -36,7 +31,7 @@ public class PicturesDBUtil {
 
 		Picture questionPicture;
 
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		User_word user = WordLearnApp.wordLernApp.getUser_word();
 
@@ -75,7 +70,7 @@ public class PicturesDBUtil {
 	}
 
 	public static List<Picture> getAnswers(Picture randomPicture) {
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		List<Picture> allPosAnswers = session.createCriteria(Picture.class)
 				.add(Restrictions.ne("id", randomPicture.getId())).list();
@@ -98,26 +93,10 @@ public class PicturesDBUtil {
 		return result;
 	}
 
-	public static Session beginTransactionLocal() {
-		try {
-			SessionFactory sessionFactory = WordLearnApp.wordLernApp.getConnection().getSessionFactory();
-
-			Session session = sessionFactory.openSession();
-
-			session.beginTransaction();
-
-			return session;
-		}catch(HibernateException e) {
-			e.printStackTrace();
-		}
-
-		return null;
-	}
-
 	@SuppressWarnings({ "deprecation", "rawtypes" })
 	public static List getAllPictires() {
 
-		Session session = beginTransactionLocal();
+		Session session = CommonDBUtil.beginTransactionLocal();
 		Criteria criteria = null;
 
 		if(session != null) {
@@ -144,8 +123,8 @@ public class PicturesDBUtil {
 	}
 
 	public static void incrementCountSentence(Picture randomPicture) {
-		// TODO Auto-generated method stub
-		Session session = beginTransactionLocal();
+
+		Session session = CommonDBUtil.beginTransactionLocal();
 
 		User_word user = WordLearnApp.wordLernApp.getUser_word();
 
